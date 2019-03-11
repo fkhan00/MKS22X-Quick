@@ -41,8 +41,7 @@ public class Quick{
     int popped = 0;
     popped = partition(ary, start, end);
     while(true){
-      System.out.println(toString(ary));
-      if(popped < k){
+        if(popped < k){
         start = popped;
         popped = partition(ary, start, ary.length - 1);
       }
