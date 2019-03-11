@@ -1,6 +1,8 @@
 import java.util.Random;
 public class Quick{
   public static int partition(int[] ary, int start, int end){
+    if(start == end){
+      return start;}
     Random randgen = new Random();
     int index = Math.abs(randgen.nextInt()) % (end - start);
     // randomly chosen element to be pivot
@@ -12,7 +14,6 @@ public class Quick{
     int point = end;
     // go through sublist
     for(int i = start + 1; i < end; i++){
-      System.out.println(toString(ary));
       //if element is less than pivot
       // swap it with pivot and update index
       if(ary[i] <= ary[index]){
@@ -38,14 +39,18 @@ public class Quick{
     int start = 0;
     int end = ary.length - 1;
     int popped = 0;
+    popped = partition(ary, start, end);
     while(true){
-      popped = partition(ary, start, end);
+      System.out.println(toString(ary));
       if(popped < k){
-        start = popped;}
+        start = popped;
+        popped = partition(ary, start, ary.length - 1);
+      }
       else if(popped > k){
-        end = popped;}
+        end = popped;
+      popped = partition(ary, 0, end);}
       else{
-        return popped;}}}
+        return ary[popped];}}}
     public static String toString(int[] ary){
       String output = "";
       for(int i = 0; i < ary.length; i++){
