@@ -6,6 +6,7 @@ public class Quick{
     Random randgen = new Random();
     int index = Math.abs(randgen.nextInt()) % (end - start);
     // randomly chosen element to be pivot
+    index = median(index, start, end);
     int hold = ary[start];
     ary[start] = ary[index];
     ary[index] = hold;
@@ -16,18 +17,26 @@ public class Quick{
     for(int i = start + 1; i < end; i++){
       //if element is less than pivot
       // swap it with pivot and update index
-      if(ary[i] <= ary[index]){
+      if(ary[i] < ary[index]){
         hold = ary[i];
         ary[i] = ary[index];
         ary[index] = hold;
-        index ++;}
+        index = i;}
+      else if(ary[i] == ary[index]){
+        if(randgen.nextInt() % 2 == 0){
+          hold = ary[i];
+          ary[i] = ary[index];
+          ary[index] = hold;
+          index = i;}
+        else{}
+      }
       else{
       //if element is greater than pivot
       // move from back of list until you reach element smaller than pivot
       // swap that element with the element greater than pivot and then pivot with the smaller element
       // once point equals index, the array has been sorted and now return index
         while(ary[point] > ary[index]){
-          if(point == index + 1){
+          if(point <= index + 1){
             return index;}
           point --;}
         hold = ary[point];
@@ -35,6 +44,12 @@ public class Quick{
         ary[i] = hold;
         i--;}}
     return index;}
+  public static int median(int x, int y, int z){
+    if(x >= y && y >= z){
+      return y;}
+    if(x <= y && z >= x){
+      return x;}
+    return z;}
   public static int quickSelect(int[] ary, int k){
     int start = 0;
     int end = ary.length - 1;
@@ -55,4 +70,4 @@ public class Quick{
       for(int i = 0; i < ary.length; i++){
         output += ary[i] + " ";}
       return output;
-    }}
+}}
