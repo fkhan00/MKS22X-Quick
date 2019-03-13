@@ -50,18 +50,18 @@ public class Quick{
     if(x <= y && z >= x){
       return x;}
     return z;}
+
   public static int quickselect(int[] ary, int k){
     int start = 0;
     int end = ary.length - 1;
     int popped = 0;
-    popped = partition(ary, start, end);
     while(true){
       popped = partition(ary, start, end);
         if(popped < k){
-        start = popped;
+        start = popped + 1;
       }
       else if(popped > k){
-      end = popped;
+      end = popped - 1;
     }
       else{
         return ary[popped];}}}
@@ -70,7 +70,6 @@ public class Quick{
     public static void quickSortH(int[] ary, int start, int end){
       if(end > start){
         int popped = partition(ary, start, end);
-        System.out.println(toString(ary) + "  " + popped );
         quickSortH(ary, start, popped - 1);
         quickSortH(ary, popped + 1, end);}}
 
