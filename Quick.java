@@ -4,7 +4,7 @@ public class Quick{
       if(start == end){
         return start;}
       Random randgen = new Random();
-      int index = Math.abs(randgen.nextInt()) % (end - start);
+      int index = Math.abs(randgen.nextInt()) % (end - start) + start;
       // randomly chosen element to be pivot
       index = median(index, start, end);
       int hold = ary[start];
@@ -14,7 +14,7 @@ public class Quick{
       //swap pivot with start index
       int point = end;
       // go through sublist
-      for(int i = start + 1; i < end; i++){
+      for(int i = start + 1; i <= end; i++){
         //if element is less than pivot
         // swap it with pivot and update index
         if(ary[i] < ary[index]){
@@ -70,6 +70,7 @@ public class Quick{
     public static void quickSortH(int[] ary, int start, int end){
       if(end > start){
         int popped = partition(ary, start, end);
+        System.out.println(toString(ary) + "  " + popped );
         quickSortH(ary, start, popped - 1);
         quickSortH(ary, popped + 1, end);}}
 
