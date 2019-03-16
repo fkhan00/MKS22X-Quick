@@ -4,25 +4,44 @@ public class Quick{
       if(start == end){
         return start;}
       Random randgen = new Random();
-      int keeper = (Math.abs(randgen.nextInt()) % (end - start)) + start;
-      int index =  median(ary[start], ary[end], ary[keeper]);
+      //int keeper = (Math.abs(randgen.nextInt()) % (end - start)) + start;
+      int index =  median(ary[start], ary[end], ary[(end +  start) / 2]);
       if(index == ary[start]){
         index = start;}
       else if (index == ary[end]){
         index = end;}
       else{
-        index = keeper;}
+        index = (end + start) / 2;}
       int hold = ary[start];
       ary[start] = ary[index];
       ary[index] = hold;
       index = start;
       for(int i = start + 1; i <= end; i++){
-        if(ary[i] < ary[index] || (ary[i] == ary[index] && Math.abs(randgen.nextInt()) % 2 == 0)){
+        if(ary[i] < ary[index]) {
           hold = ary[i];
           ary[i] = ary[index];
           ary[index] = hold;
           index = i;}
+      else if(ary[i] == ary[index]){
+        if(Math.abs(randgen.nextInt() % 2) == 0){
+          while(ary[end] >= ary[index]){
+            if(end == index){
+              return index;}
+            end --;}
+          hold = ary[end];
+          ary[end] = ary[i];
+          ary[i] = hold;
+
+          hold = ary[index];
+          ary[index] = ary[i];
+          ary[i] = hold;
+          index = i;}
         else{
+          hold = ary[i];
+          ary[i] = ary[index];
+          ary[index] = hold;
+          index = i;}}
+      else{
           while(ary[end] >= ary[index]){
             if(end == index){
               return index;}
