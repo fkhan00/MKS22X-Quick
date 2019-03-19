@@ -81,12 +81,32 @@ public class Quick{
 
     public static void quicksortH(int[] ary, int start, int end){
       if(end > start){
+        if(end - start == 32){
+          insertionSort(ary, start, end);
+          return;
+        }
         int popped = partition(ary, start, end);
         quicksortH(ary, start, popped - 1);
         quicksortH(ary, popped + 1, end);}}
 
+        private static void insertionSort(int[] ary, int lo, int hi)
+         {
+           int c = 0;
+           int place = 0;
+           for(int i = lo; i <= hi; i++)
+           {
+             place = ary[i];
+             c = i - 1;
+             while(c >= 0 && place <= ary[c])
+             {
+               ary[c + 1] = ary[c];
+               c--;
+             }
+             ary[c + 1] = place;
+           }
+       }
     public static String toString(int[] ary){
       String output = "";
       for(int i = 0; i < ary.length; i++){
         output += ary[i] + " ";}
-      return output;}}
+return output;}}
