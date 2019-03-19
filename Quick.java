@@ -81,7 +81,7 @@ public class Quick{
 
     public static void quicksortH(int[] ary, int start, int end){
       if(end > start){
-        if(end - start == 32){
+        if(end - start == 64){
           insertionSort(ary, start, end);
           return;
         }
